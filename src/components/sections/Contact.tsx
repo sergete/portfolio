@@ -13,7 +13,7 @@ export function Contact() {
             >
                 <h2 className="text-5xl font-bold mb-6">Get In Touch</h2>
                 <p className="text-xl text-muted-foreground mb-12">
-                    I'm currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    I'm always open for good opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                 </p>
 
                 <div className="flex justify-center gap-6 mb-16">
