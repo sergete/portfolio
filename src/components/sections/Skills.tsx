@@ -83,7 +83,7 @@ export function Skills() {
                                         key={index}
                                         initial={{ opacity: 0, scale: 0 }}
                                         whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 1, delay: index * 0.05 }}
+                                        transition={{ duration: 0.5, delay: index * 0.05 }}
                                         viewport={{ once: true }}
                                         className="flex flex-col items-center justify-center p-6 rounded-2xl bg-secondary/30 border border-border hover:border-primary/50 hover:bg-secondary/50 transition-all group"
                                     >
