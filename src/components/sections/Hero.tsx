@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { info } from "@/data/info";
 import { ThreeBackground } from "@/components/ui/ThreeBackground";
 
 export function Hero() {
+    const [isFlipped, setIsFlipped] = useState(false);
+
     return (
         <section id="home" className="h-[100svh] min-h-[700px] w-full flex items-center justify-center snap-start bg-background relative overflow-hidden px-4 md:px-12 lg:px-24">
             <div className="z-10 max-w-7xl w-full grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-center">
@@ -15,12 +18,41 @@ export function Hero() {
                     className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-start order-1 md:order-1"
                 >
                     <div className="relative group p-4"> {/* Added padding to prevent clipping of shadows/glows */}
-                        <div className="w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] transition-transform duration-500 group-hover:scale-[1.02]">
-                            <img
-                                src="/avatares/avatar_job2.png"
-                                alt={info.name}
-                                className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-500 drop-shadow-2xl"
-                            />
+                        <div
+                            className={`relative w-64 h-64 ${isFlipped ? "md:w-60 md:h-60" : "md:w-80 md:h-80"} lg:w-[450px] lg:h-[450px] cursor-pointer group`}
+                            onClick={() => setIsFlipped(!isFlipped)}
+                            style={{ perspective: 1000 }}
+                        >
+                            <motion.div
+                                className="w-full h-full relative"
+                                animate={{ rotateY: isFlipped ? 180 : 0 }}
+                                transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
+                                style={{ transformStyle: "preserve-3d" }}
+                            >
+                                {/* Front face */}
+                                <div
+                                    className="absolute inset-0"
+                                    style={{ backfaceVisibility: "hidden" }}
+                                >
+                                    <img
+                                        src="/avatares/avatar_job2.png"
+                                        alt={info.name}
+                                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 drop-shadow-2xl"
+                                    />
+                                </div>
+
+                                {/* Back face */}
+                                <div
+                                    className="absolute inset-0"
+                                    style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                                >
+                                    <img
+                                        src="/original/profile.png"
+                                        alt={info.name}
+                                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 drop-shadow-2xl"
+                                    />
+                                </div>
+                            </motion.div>
                         </div>
                         {/* Decorative elements behind avatar */}
                         <div className="absolute -inset-4 bg-primary/5 blur-3xl -z-10 rounded-full animate-pulse" />
